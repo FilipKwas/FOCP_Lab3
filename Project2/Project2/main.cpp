@@ -1,15 +1,14 @@
 #include <iostream>
 #include <cstdlib>
+#include <array>
+#include <cmath>
 
 using namespace std;
-// Define a struct
+
 struct Point2D {
 	double x;
 	double y;
 };
-
-// INPUT ---> {????} ---> OUTPUT
-//		{initialize struct}
 
 Point2D create_point() {
 	Point2D tmp;
@@ -19,25 +18,38 @@ Point2D create_point() {
 	return tmp;
 }
 
-void initializa_in_place (Point2D& point) {
-	point.x = rand() % 10;
-	point.y = rand() % 10;
-	cout << "Value of X: " << point.x << endl;
-	cout << "Value of Y: " << point.y << endl;
+float distance(Point2D left, Point2D right) {
+	return sqrt(pow((right.x - left.x), 2) + pow((right.y - left.y), 2));
+
 }
 
 int main() {
-	
-	Point2D mypoint = create_point();
+	array<Point2D, 10> points;
 
-	cout << "Value of X: " << mypoint.x << endl;
-	cout << "Value of Y: " << mypoint.y << endl;
+	for (int i = 0; i < 10; i++) {
+		points[i] = create_point();
+		cout << "point [" << i << "] = (" << points[i].x << ", " << points[i].y << ")" << endl;
+	}
+	
+	float largest_distance = 0.0;
+	Point2D first;
+	Point2D second;
 
-	Point2D empty_point = create_point();
-	initializa_in_place(empty_point);
-	
-	cout << "Value of X: " << empty_point.y << endl;
-	cout << "Value of Y: " << empty_point.y << endl;
-	
+
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			float d = distance(points[i], points[j]);
+			if (d >= largest_distance) {
+			largest_distance = d;
+			first = points[i];
+			second = points[j];
+			}
+		}
+	}
+
+	cout<< "The largest distance is: " << largest_distance << endl;
+	cout << "Fiirst point: (" << first.x << first.y << ")" << endl;
+	cout << "Second point: (" << second.x << second.y << ")" << endl;
+
 	return 0;
 }
