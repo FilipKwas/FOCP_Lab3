@@ -1,3 +1,3 @@
 ﻿  main.cpp
-C:\Users\Filip\FOCP_Lab3\Project2\Project2\main.cpp(22,13): warning C4244: "return": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Filip\FOCP_Lab3\Project2\Project2\main.cpp(22,72): warning C4244: "return": konwersja z "double" do "float", możliwa utrata danych
   Project2.vcxproj -> C:\Users\Filip\FOCP_Lab3\Project2\Debug\Project2.exe
