@@ -1,63 +1,41 @@
 #include <iostream>
-#include <cstdlib>
+#include <vector>
 #include <array>
-#include <cmath>
 
 using namespace std;
 
-struct Point2D {
-	double x;
-	double y;
-};
+struct Matrix2D {
+	vector<vector<int>> contents;
 
-Point2D create_point() {
-	Point2D tmp;
-	tmp.x = rand() % 10;
-	tmp.y = rand() % 10;
+	void print() {
+		cout << "Contents of the matrix: " << endl;
+		
+		int rows = contents.size();
+		int cols = contents[0].size();
 
-	return tmp;
-}
-
-float area_of_triangle(Point2D a, Point2D b, Point2D c) {
-	return abs(a.x * (b.y - c.y) + b.x * (a.y - c.y) + c.y * (a.y - b.y)) / 2;
-	
-}
-
-int main() {
-	array<Point2D, 10> points;
-
-	for (int i = 0; i < 10; i++) {
-		points[i] = create_point();
-		cout << "point [" << i << "] = (" << points[i].x << ", " << points[i].y << ")" << endl;
-	}
-
-	float largest_area = 0.0;
-	Point2D first;
-	Point2D second;
-	Point2D third;
-
-
-
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 10; j++) {
-			for (int k = 0; k < 10; k++) {
-				float area = area_of_triangle(points[i], points[j], points[k]);
-				if (area > largest_area) {
-					largest_area = area;
-					first = points[i];
-					second = points[j];
-					third = points[k];
-				}
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				cout << contents[i][j] << " ";
 			}
+			cout << endl;
 		}
 	}
+};
 
-	cout << "The largest area is: " << largest_area << endl;
-	cout << "First point: (" << first.x << first.y << ")" << endl;
-	cout << "Second point: (" << second.x << second.y << ")" << endl;
-	cout << "Third point: (" << third.x << third.y << ")" << endl;
+int main() {
+	// A 3x3, B 3x3
+	
+	// Declare the matrices
+	Matrix2D a;
+	Matrix2D b;
+
+	// Initialize the contents
+	a.contents = { {1,2,3}, {4,5,6}, {7,8,9} };
+	b.contents = { {9,8, 7}, {6,5,4}, {3,2,1} };
+
+	a.print();
+	b.print();
 
 
 	return 0;
-
 }
